@@ -1,14 +1,24 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query
+} from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
-  ApiOkResponse,
-  ApiTags
+  ApiOkResponse, ApiQuery, ApiTags
 } from '@nestjs/swagger';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { CreateUserDto, UpdateUserDto } from './dto';
+import { GetUserQuery } from './dto/get-user.query';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
@@ -21,8 +31,9 @@ export class UsersController {
   @Get()
   @ApiOkResponse({ description: 'Get all Users', type: User, isArray: true})
   @ApiInternalServerErrorResponse({ description: 'Internal Server Error'})
-  async find(): Promise<User[]> {
-    return this.usersService.find();
+  @ApiQuery({type: GetUserQuery})
+  async find(@Query() query: GetUserQuery): Promise<User[]> {
+    return this.usersService.find(query);
   }
 
   @Post()

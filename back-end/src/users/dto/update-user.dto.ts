@@ -7,23 +7,23 @@ export class UpdateUserDto {
   @IsNotEmpty()
   @IsString()
   @ApiProperty({ type: String, description: 'User First Name', required: false})
-  firstName: string;
+  firstName?: string;
 
   @IsOptional()
   @IsNotEmpty()
   @IsString()
   @ApiProperty({ type: String, description: 'User Last Name', required: false})
-  lastName: string;
+  lastName?: string;
 
   @IsOptional()
   @IsNotEmpty()
   @IsEmail()
   @ApiProperty({ type: String, description: 'User E-mail', required: false})
-  email: string;
+  email?: string;
 
   @IsOptional()
   @IsNotEmpty()
   @IsInt()
   @ApiProperty({ type: Number, description: 'User cellphone number', required: false})
-  cellphoneNumber: number;
+  cellphoneNumber?: number;
 }
