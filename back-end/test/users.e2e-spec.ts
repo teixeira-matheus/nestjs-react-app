@@ -1,28 +1,26 @@
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersController } from './users.controller';
+import { UsersModule } from 'src/users/users.module';
 
-describe('UsersController', () => {
-  let controller: UsersController;
+describe('UsersController (e2e)', () => {
+  let app: INestApplication;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [UsersController],
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [UsersModule],
     }).compile();
 
-    controller = module.get<UsersController>(UsersController);
+    app = moduleFixture.createNestApplication();
+    await app.init();
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
-
-  describe('find', () => {
+  describe('GET users/', () => {
     it.skip('should return all users', () => {
       //TODO
     });
   });
   
-  describe('create', () => {
+  describe('POST users/', () => {
     it.skip('should add one user', () => {
       //TODO
     });
@@ -56,7 +54,7 @@ describe('UsersController', () => {
     });
   });
   
-  describe('update', () => {
+  describe('PUT users/', () => {
     it.skip('should update one user', () => {
       //TODO
     });
@@ -90,10 +88,9 @@ describe('UsersController', () => {
     });
   });
 
-  describe('delete', () => {
+  describe('DELETE users/', () => {
     it.skip('should delete one user', () => {
       //TODO
     });
   });
-  
 });

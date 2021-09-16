@@ -16,6 +16,7 @@ Front-End:
 - React
 - Redux
 - React hooks
+- Typescript
 ## Installation
 
 Back-End:
